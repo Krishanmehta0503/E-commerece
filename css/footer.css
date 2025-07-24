@@ -1,0 +1,156 @@
+.footer-modern {
+  background: #111;
+  color: #ddd;
+  font-family: Arial, sans-serif;
+}
+
+.footer-top {
+  padding: 50px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 30px;
+}
+
+.footer-col {
+  text-align: left;
+}
+
+.footer-title {
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.footer-title::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 40px;
+  background: #ff6d74;
+  margin-top: 5px;
+}
+
+.footer-col p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #ff6d74;
+}
+
+.social-icons a {
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.social-icons a:hover {
+  background: #ff6d74;
+}
+
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.footer-form button {
+  padding: 10px;
+  background: #ff6d74;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.footer-form button:hover {
+  background: #e65b65;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px;
+  background: #000;
+  font-size: 14px;
+}
+
+/* Tablet view adjustments */
+@media (max-width: 992px) {
+  .footer-top {
+    padding: 40px 15px;
+  }
+  .footer-title {
+    font-size: 20px;
+  }
+  .footer-col p,
+  .footer-col ul li a {
+    font-size: 13px;
+  }
+  .social-icons a {
+    padding: 8px;
+  }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 576px) {
+  .footer-top {
+    padding: 30px 10px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    gap: 20px;
+  }
+  .footer-title {
+    font-size: 18px;
+  }
+  .footer-col ul li {
+    margin-bottom: 8px;
+  }
+  .footer-form input,
+  .footer-form button {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .social-icons a {
+    padding: 6px;
+    margin: 0 3px;
+  }
+  .footer-bottom {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

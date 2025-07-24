@@ -1,0 +1,150 @@
+.contact-section {
+  position: relative;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  color: white;
+  padding: 80px 0;
+}
+
+.contact-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 50px 20px;
+  border-radius: 15px;
+}
+
+.contact-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-map,
+.contact-form {
+  flex: 1;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Animation for Map and Form */
+.contact-map:hover,
+.contact-form:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.contact-map {
+  min-height: 350px;
+  overflow: hidden;
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form label {
+  font-weight: bold;
+}
+
+.contact-form .form-control {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #ff6d74;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #ff3c44;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+/* CAPTCHA */
+.captcha-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.refresh-captcha {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: #2a5298;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* RESPONSIVENESS */
+
+/* Tablets (max-width: 991px) */
+@media (max-width: 991px) {
+  .contact-wrapper {
+    flex-direction: column;
+  }
+
+  .contact-map,
+  .contact-form {
+    min-height: 300px;
+    width: 100%;
+  }
+
+  .contact-title {
+    font-size: 28px;
+  }
+}
+
+/* Mobile Devices (max-width: 576px) */
+@media (max-width: 576px) {
+  .contact-section {
+    padding: 50px 0;
+  }
+
+  .contact-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .contact-form {
+    padding: 15px;
+  }
+
+  .btn-submit {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .captcha-box {
+    font-size: 18px;
+    padding: 5px 8px;
+  }
+}

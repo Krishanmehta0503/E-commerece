@@ -1,0 +1,177 @@
+.about-section {
+  background: #f8f9fa;
+}
+
+.about-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-img img {
+  transition: transform 0.5s ease;
+}
+
+.about-img:hover img {
+  transform: scale(1.05);
+}
+
+.about-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.about-stats h3 {
+  font-size: 2rem;
+}
+.why-choose-section {
+  background: #ffffff;
+}
+
+.choose-card {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 15px;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  perspective: 1000px;
+}
+
+.choose-card:hover {
+  transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.choose-card .card-icon i {
+  transition: color 0.3s ease;
+}
+
+.choose-card:hover .card-icon i {
+  color: #ff4c4c;
+}
+
+
+/* Runnig counter */
+
+.stats-section {
+  background: linear-gradient(135deg, #ff4c4c, #3c3c3c);
+  color: #ff0000;
+}
+
+.counter-box h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.counter-box p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #ff0000;
+}
+
+.value-card {
+  transition: transform 0.3s ease;
+  background: #fff;
+}
+.value-card:hover {
+  transform: translateY(-5px);
+}
+.team-card img {
+  transition: transform 0.3s ease;
+}
+.team-card:hover img {
+  transform: scale(1.05);
+}
+
+ /* Core Values Hover */
+    .value-card {
+      transition: transform 0.3s ease;
+      background: #fff;
+    }
+    .value-card:hover {
+      transform: translateY(-5px);
+    }
+    /* Team Hover Effect */
+    .team-card img {
+      transition: transform 0.3s ease;
+      width: 100%;
+      border-radius: 10px;
+    }
+    .team-card:hover img {
+      transform: scale(1.05);
+    }
+    /* Stats Counter */
+    .counter {
+      font-size: 2rem;
+    }
+
+    /* Tablet View */
+@media (max-width: 992px) {
+  .about-img img {
+    width: 100%;
+    height: auto;
+  }
+  .about-overlay {
+    bottom: 5%;
+    left: 5%;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+  .about-stats h3 {
+    font-size: 1.5rem;
+  }
+  .choose-card {
+    padding: 20px 15px;
+  }
+  .counter-box h2 {
+    font-size: 2.5rem;
+  }
+  .counter-box p {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 576px) {
+  .about-section {
+    padding: 40px 15px;
+    text-align: center;
+  }
+  .about-img {
+    margin-bottom: 20px;
+  }
+  .about-overlay {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    bottom: 3%;
+    left: 3%;
+  }
+  .about-stats h3 {
+    font-size: 1.3rem;
+  }
+  .choose-card {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+  .choose-card:hover {
+    transform: scale(1.02); /* Reduce 3D effect for smaller screens */
+  }
+  .counter-box h2 {
+    font-size: 2rem;
+  }
+  .counter-box p {
+    font-size: 0.9rem;
+  }
+  .value-card {
+    margin-bottom: 15px;
+  }
+  .team-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  .counter {
+    font-size: 1.5rem;
+  }
+}
