@@ -5,28 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="./index.css" />
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+     <link rel="stylesheet" type="text/css" href="./index.css"></link>
 </head>
 <body>
-<form class="form" onsubmit="validateLogin(event)">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <div class="form-inner">
-      <h2>Login</h2>
-      <input type="text" class="input" id="email" placeholder="Email">
-      <div class="password-wrapper">
-        <input type="password" class="input" id="password" placeholder="Password">
-        <i class="fa-solid fa-eye toggle-password" id="toggleIcon" onclick="togglePassword()"></i>
-      </div>
-      <input type="submit" class="button" value="Login">
-      <div class="error-message" id="errorMsg"></div>
+
+  <form class="form" onsubmit="validateLogin(event)">
+    <h2 class="text-center mb-4">Login</h2>
+    <input type="text" class="input form-control" id="email" placeholder="Email">
+    <div class="password-wrapper">
+      <input type="password" class="input form-control" id="password" placeholder="Password">
+      <i class="fa-solid fa-eye" id="toggleIcon" onclick="togglePassword()"></i>
     </div>
+    <input type="submit" class="button btn btn-primary mt-3" value="Login">
+    <div class="error-message text-center" id="errorMsg"></div>
   </form>
 
-  <script src="./index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script> <!-- Make sure this file exists -->
 </body>
 </html>
