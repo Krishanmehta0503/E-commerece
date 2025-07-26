@@ -6,7 +6,7 @@ function validateLogin(event) {
   const errorMsg = document.getElementById("errorMsg");
 
   // Simple validation (you can replace this with actual authentication)
-  if (email === "admin@example.com" && password === "123456") {
+  if (email === "Krishanmehta052001@gmail.com" && password === "Pass@12345") {
     // Redirect to your e-commerce page
     window.location.href = "e-commerece.html";
   } else {
