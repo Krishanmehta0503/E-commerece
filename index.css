@@ -1,33 +1,55 @@
-    body {
-      background-color: #f8f9fa;
-    }
-    .form {
-      max-width: 350px;
-      margin: 80px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .input {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 10px;
-    }
-    .button {
-      width: 100%;
-      padding: 10px;
-    }
-    .error-message {
-      color: red;
-      margin-top: 10px;
-    }
-    .password-wrapper {
-      position: relative;
-    }
-    .password-wrapper i {
-      position: absolute;
-      right: 10px;
-      top: 35%;
-      cursor: pointer;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  background: #0c0116;
+  font-family: sans-serif;
+}
+
+.login-box {
+  position: relative;
+  width: 300px;
+  padding: 40px;
+  background: #1b1b1b;
+  border-radius: 10px;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0 0 10px #000;
+}
+
+.login-box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00);
+  background-size: 400% 400%;
+  animation: animateBorder 10s linear infinite;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+@keyframes animateBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+}
