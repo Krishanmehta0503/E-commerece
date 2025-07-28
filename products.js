@@ -30,3 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Add this script at the bottom of products.html or in products.js
+document.querySelectorAll('.quick-view').forEach(button => {
+  button.addEventListener('click', () => {
+    const title = button.dataset.title;
+    const price = button.dataset.price;
+    const desc = button.dataset.desc;
+    const img = button.dataset.img;
+
+    // Encode URL and redirect
+    window.location.href = `product-details.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&desc=${encodeURIComponent(desc)}&img=${encodeURIComponent(img)}`;
+  });
+});
