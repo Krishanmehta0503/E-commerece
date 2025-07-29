@@ -75,19 +75,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Make the whole card clickable
   document.querySelectorAll('.product-card-inner').forEach(card => {
-    card.addEventListener('click', function () {
-      const button = this.querySelector('.quick-view');
-      if (button) {
-        const data = {
-          title: button.dataset.title,
-          price: button.dataset.price,
-          desc: button.dataset.desc,
-          img: button.dataset.img
-        };
-        openModal(data);
-      }
-    });
+  card.addEventListener('click', function () {
+    const button = this.querySelector('.quick-view');
+    if (button) {
+      const data = {
+        title: button.dataset.title,
+        price: button.dataset.price,
+        desc: button.dataset.desc,
+        img: button.dataset.img
+      };
+
+      // Save product data to localStorage
+      localStorage.setItem("selectedProduct", JSON.stringify(data));
+
+      // Open modal
+      openModal(data);
+    }
   });
+});
 });
 const data = JSON.parse(localStorage.getItem("selectedProduct"));
 let product = {
@@ -112,19 +117,31 @@ if (data) {
 }
 
 // Show payment summary column on Buy Now
-document.getElementById("buyNowBtn").addEventListener("click", () => {
-  const quantity = parseInt(document.getElementById("quantity").value);
-  const totalAmount = product.price * quantity;
+document.getElementById("buyNowBtn")?.addEventListener("click", () => {
+  const quantity = parseInt(document.getElementById("quantity").value) || 1;
+  const price = parseInt(product.price);
+  const total = quantity * price;
 
-  // Update payment summary
   document.getElementById("summary-title").textContent = product.title;
-  document.getElementById("summary-price").textContent = product.price;
+  document.getElementById("summary-price").textContent = price;
   document.getElementById("summary-quantity").textContent = quantity;
-  document.getElementById("summary-total").textContent = totalAmount;
+  document.getElementById("summary-total").textContent = total;
 
-  // Show the column
-  document.getElementById("payment-summary").classList.remove("d-none");
+  document.getElementById("payment-summary-column").classList.remove("d-none");
 });
+
+document.getElementById("quantity").addEventListener("input", () => {
+  const data = JSON.parse(localStorage.getItem("selectedProduct"));
+  if (!data) return;
+
+  const quantity = parseInt(document.getElementById("quantity").value) || 1;
+  const price = parseInt(data.price.replace(/[₹,]/g, ''));
+  const total = quantity * price;
+
+  document.getElementById("summary-quantity").textContent = quantity;
+  document.getElementById("summary-total").textContent = total;
+});
+
 
 // Razorpay Payment
 document.getElementById("payNowBtn").addEventListener("click", () => {

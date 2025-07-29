@@ -1,30 +1,36 @@
-  function togglePassword() {
-    const passwordField = document.getElementById('password');
-    const icon = document.getElementById('toggleIcon');
-    if (passwordField.type === "password") {
-      passwordField.type = "text";
-      icon.classList.remove("fa-eye");
-      icon.classList.add("fa-eye-slash");
-    } else {
-      passwordField.type = "password";
-      icon.classList.remove("fa-eye-slash");
-      icon.classList.add("fa-eye");
-    }
-  }
+function validateLogin(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMsg = document.getElementById("errorMsg");
 
-  function validateLogin(event) {
-    event.preventDefault();
+  console.log("Email entered:", email);
+  console.log("Password entered:", password);
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const errorMsg = document.getElementById("errorMsg");
+  const validEmail = "krishanmehta052001@gmail.com";
+  const validPassword = "Pass@12345";
 
-    if (email === "" || password === "") {
-      errorMsg.textContent = "Please enter both email and password.";
-      return false;
-    }
-
-    // ✅ Correct redirect
+  if (email === validEmail && password === validPassword) {
+    console.log("Login successful, redirecting...");
     window.location.href = "E-Commerce_website.html";
-    return false;
+  } else {
+    console.log("Login failed");
+    errorMsg.textContent = "Unable to login. Please check your email or password.";
+    errorMsg.style.color = "red";
   }
+}
+
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleIcon = document.getElementById("toggleIcon");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleIcon.classList.remove("fa-eye");
+    toggleIcon.classList.add("fa-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    toggleIcon.classList.remove("fa-eye-slash");
+    toggleIcon.classList.add("fa-eye");
+  }
+}
