@@ -95,3 +95,12 @@
     font-size: 0.9rem;
   }
 }
+
+.product-card-inner {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.product-card-inner:hover {
+  transform: scale(1.02);
+}

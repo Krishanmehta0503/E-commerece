@@ -43,3 +43,117 @@ document.querySelectorAll('.quick-view').forEach(button => {
     window.location.href = `product-details.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&desc=${encodeURIComponent(desc)}&img=${encodeURIComponent(img)}`;
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const quickViewModal = new bootstrap.Modal(document.getElementById('quickViewModal'));
+  const modalTitle = document.getElementById('modal-title');
+  const modalPrice = document.getElementById('modal-price');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalImg = document.getElementById('modal-img');
+
+  // Function to open modal with product data
+  function openModal(data) {
+    modalTitle.textContent = data.title;
+    modalPrice.textContent = data.price;
+    modalDesc.textContent = data.desc;
+    modalImg.src = data.img;
+    quickViewModal.show();
+  }
+
+  // For Quick View buttons
+  document.querySelectorAll('.quick-view').forEach(button => {
+    button.addEventListener('click', function () {
+      const data = {
+        title: this.dataset.title,
+        price: this.dataset.price,
+        desc: this.dataset.desc,
+        img: this.dataset.img
+      };
+      openModal(data);
+    });
+  });
+
+  // Make the whole card clickable
+  document.querySelectorAll('.product-card-inner').forEach(card => {
+    card.addEventListener('click', function () {
+      const button = this.querySelector('.quick-view');
+      if (button) {
+        const data = {
+          title: button.dataset.title,
+          price: button.dataset.price,
+          desc: button.dataset.desc,
+          img: button.dataset.img
+        };
+        openModal(data);
+      }
+    });
+  });
+});
+const data = JSON.parse(localStorage.getItem("selectedProduct"));
+let product = {
+  title: "",
+  price: 0,
+  desc: "",
+  img: ""
+};
+
+if (data) {
+  document.getElementById("modal-title").textContent = data.title;
+  document.getElementById("modal-price").textContent = data.price;
+  document.getElementById("modal-desc").textContent = data.desc;
+  document.getElementById("modal-img").src = data.img;
+
+  product = {
+    title: data.title,
+    price: parseInt(data.price.replace(/[₹,]/g, '')),
+    desc: data.desc,
+    img: data.img
+  };
+}
+
+// Show payment summary column on Buy Now
+document.getElementById("buyNowBtn").addEventListener("click", () => {
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const totalAmount = product.price * quantity;
+
+  // Update payment summary
+  document.getElementById("summary-title").textContent = product.title;
+  document.getElementById("summary-price").textContent = product.price;
+  document.getElementById("summary-quantity").textContent = quantity;
+  document.getElementById("summary-total").textContent = totalAmount;
+
+  // Show the column
+  document.getElementById("payment-summary").classList.remove("d-none");
+});
+
+// Razorpay Payment
+document.getElementById("payNowBtn").addEventListener("click", () => {
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const totalAmount = product.price * quantity;
+
+  const options = {
+    key: "rzp_test_XXXXXXXXXXXX", // Replace with your Razorpay Test Key
+    amount: totalAmount * 100,
+    currency: "INR",
+    name: "Solitaire Infosys",
+    description: product.title,
+    handler: function (response) {
+      alert("Payment successful! ID: " + response.razorpay_payment_id);
+    },
+    theme: {
+      color: "#198754",
+    },
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+});
+
+// Add to cart
+document.getElementById("addToCartBtn").addEventListener("click", () => {
+  const quantity = parseInt(document.getElementById("quantity").value);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ ...product, quantity });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Product added to cart!");
+});
