@@ -35,7 +35,7 @@
         }
     
         // Set a timer to automatically advance cards every 5 seconds (adjust as needed)
-        setInterval(autoCard, 5000);
+        setInterval(autoCard, 5500);
     
         // Function to display the current card
         function showCard(n) {
@@ -84,6 +84,6 @@
         setInterval(() => {
           const nextSection = (currentSection + 1) % sections.length;
           showSection(nextSection);
-        }, 5000);
+        }, 5500);
         
         
