@@ -1,0 +1,193 @@
+function validateLogin(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMsg = document.getElementById("errorMsg");
+
+  console.log("Email entered:", email);
+  console.log("Password entered:", password);
+
+  const validEmail = "krishanmehta052001@gmail.com";
+  const validPassword = "Pass@12345";
+
+  if (email === validEmail && password === validPassword) {
+    console.log("Login successful, redirecting...");
+    window.location.href = "E-Commerce_website.html";
+  } else {
+    console.log("Login failed");
+    errorMsg.textContent = "Unable to login. Please check your email or password.";
+    errorMsg.style.color = "red";
+  }
+}
+
+function togglePassword() {
+  const pass = document.getElementById("password");
+  const icon = document.getElementById("toggleIcon");
+  if (pass.type === "password") {
+    pass.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    pass.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  }
+}
+
+function validateLogin(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  // Fetch stored users from backend or localStorage
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find(u => u.email === email && u.password === password);
+
+  if (user) {
+    alert("Login successful!");
+    window.location.href = "homepage.html"; // Change to your page
+  } else {
+    document.getElementById("errorMsg").innerText = "Invalid email or password";
+  }
+}
+
+function registerUser(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const user = Object.fromEntries(formData.entries());
+
+  if (user.password !== user.confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  if (users.some(u => u.email === user.email)) {
+    alert("Email already registered!");
+    return;
+  }
+
+  users.push(user);
+  localStorage.setItem("users", JSON.stringify(users));
+  alert("Registration successful! Confirmation email will be sent.");
+  event.target.reset();
+}
+
+const express = require("express");
+const nodemailer = require("nodemailer");
+const app = express();
+
+app.use(express.json());
+
+app.post("/register", async (req, res) => {
+  const { email, name } = req.body;
+
+  // Send confirmation email
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user: "youremail@gmail.com", pass: "yourpassword" }
+  });
+
+  await transporter.sendMail({
+    from: '"My Website" <youremail@gmail.com>',
+    to: email,
+    subject: "Registration Successful",
+    text: `Hello ${name}, you have successfully registered!`
+  });
+
+  res.json({ message: "User registered and email sent" });
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("http://localhost:5500/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  if (res.ok) {
+    alert("Login successful");
+    window.location.href = "homepage.html"; // change to your homepage
+  } else {
+    document.getElementById("errorMsg").innerText = "Invalid email or password";
+  }
+});
+
+const BACKEND = (new URLSearchParams(window.location.search).get("api") ) || "http://localhost:5500"; 
+// you can also replace with your hosted backend URL in production
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  const res = await fetch(`${BACKEND}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  if (res.ok) {
+    alert("Login successful");
+    window.location.href = "homepage.html";
+  } else {
+    document.getElementById("errorMsg").innerText = "Invalid email or password";
+  }
+});
+
+// Handle Registration Form Submission
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // Prevent form reload
+
+  // Get form data
+  const formData = Object.fromEntries(new FormData(e.target).entries());
+
+  try {
+    const res = await fetch("http://localhost:5500/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    alert(data.message); // Show success or error message
+    if (res.ok) {
+      e.target.reset(); // Clear form on success
+    }
+  } catch (err) {
+    console.error("Error registering user:", err);
+    alert("Something went wrong. Please try again.");
+  }
+});
+
+// Handle Login Form Submission
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const res = await fetch("http://localhost:5500/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+  } catch (err) {
+    console.error("Error logging in:", err);
+    alert("Login failed.");
+  }
+});
+
+
+
+
