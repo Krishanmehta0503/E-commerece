@@ -27,6 +27,14 @@
       }
     ],
     "disown-opener": "off",
-    "axe/forms": "off"
+    "axe/forms": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter"
+        ]
+      }
+    ]
   }
 }
