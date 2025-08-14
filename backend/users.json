@@ -34,5 +34,17 @@
     "motherName": "Komal Mehta",
     "address": "649 new model colony session court ambala city",
     "createdAt": "2025-08-13T11:27:23.395Z"
+  },
+  {
+    "name": "krishan mehta",
+    "email": "rajumehta15081972@gmail.com",
+    "password": "pass@12345",
+    "mobile": "07015234881",
+    "gender": "Male",
+    "dob": "2025-08-02",
+    "fatherName": "Praveen Mehta",
+    "motherName": "Komal Mehta",
+    "address": "649 new model colony session court ambala city",
+    "createdAt": "2025-08-13T18:13:20.193Z"
   }
 ]

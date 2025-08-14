@@ -23,7 +23,7 @@ export default function Register() {
     setMessage("Registering...");
 
     try {
-      const res = await fetch("http://localhost:5000/register", {
+      const res = await fetch("http://localhost:5500/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData) // ✅ sending formData instead of undefined userData

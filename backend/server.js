@@ -54,6 +54,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
+
   try {
   await transporter.sendMail({
     from: `"E-Commerce Site" <${process.env.EMAIL_USER}>`,
@@ -85,5 +86,5 @@ if (process.env.SERVE_STATIC === "true") {
   }
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
