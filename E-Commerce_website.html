@@ -6,21 +6,22 @@
     <link rel="stylesheet" type="text/css" href="./style.css"></link>
      <link rel="stylesheet" href="./navbar.css" />
   <link rel="stylesheet" href="./footer.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <title>E-commerece Website</title>
     </head>
     <body>
           <!-- Header -->
-  <div id="navbar-placeholder"></div>
+<div id="navbar-placeholder" data-aos="fade-down"></div>
             <!-- Header Slider-->
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="height: 90vh;margin-top:70px;">
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" 
+     style="height: 90vh;" data-aos="fade-up">
   <div class="carousel-inner">
     <div class="carousel-item active position-relative">
       <img src="./images/homepage/microsoft.jpg" class="d-block w-100" style="height: 90vh;object-fit:cover;">
-      <div class="carousel-caption d-none d-md-block">
-        <h1 class="fw-bold">Welcome to Our Company</h1>
-        <p>Innovating the Future with Technology</p>
-        <a href="#services" class="btn btn-danger btn-lg">Explore More</a>
-      </div>
+      <div class="carousel-caption d-none d-md-block" data-aos="fade-up" data-aos-delay="200">
+  <h1 class="fw-bold">Welcome to Our Company</h1>
+  <p>Innovating the Future with Technology</p>
+</div>
     </div>
     <div class="carousel-item position-relative">
       <img src="./images/homepage/youth.jpg" class="d-block w-100" style="height: 90vh;object-fit:cover;">
@@ -77,59 +78,63 @@
 </section>
                     <!-- Website Testimonials -->
            <!-- Testimonials Section -->
+<!-- Testimonials Section -->
 <section class="testimonials-section">
   <div class="container">
-    <h1 class="section-title">Testimonials</h1>
-    <div class="testimonial-container" id="testimonialSlider">
+    <h1 class="section-title" data-aos="fade-up" data-aos-duration="1000">Testimonials</h1>
+    <div class="testimonial-container" id="testimonialSlider" data-aos="fade-up" data-aos-duration="1200">
       <div class="testimonial-wrapper">
         <!-- Slide 1 -->
         <div class="testimonial-slide">
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
             <img src="./images/thirdpage/testimonials_1.png" alt="Danny Glennon" />
             <h3 class="name">Danny Glennon</h3>
             <p class="role">Project Manager</p>
             <p class="feedback">It was a pleasure working with this company. Very professional and always on time.</p>
           </div>
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
             <img src="./images/thirdpage/testimonials_2.png" alt="John C. Lopez" />
             <h3 class="name">John C. Lopez</h3>
             <p class="role">CTO</p>
             <p class="feedback">Amazing experience! Delivered exactly what we needed, fast and with great quality.</p>
           </div>
         </div>
+
         <!-- Slide 2 -->
         <div class="testimonial-slide">
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
             <img src="./images/thirdpage/testimonials_2.png" alt="Daniel Vito" />
             <h3 class="name">Daniel Vito</h3>
             <p class="role">Company Director</p>
             <p class="feedback">They were respectful, responsive, and delivered beyond our expectations.</p>
           </div>
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
             <img src="./images/thirdpage/testimonials_2.png" alt="Krishan Mehta" />
             <h3 class="name">Krishan Mehta</h3>
             <p class="role">CTO</p>
             <p class="feedback">Had a great experience with this freelancer. My team was impressed!</p>
           </div>
         </div>
+
         <!-- Slide 3 -->
         <div class="testimonial-slide">
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
             <img src="./images/thirdpage/testimonials_2.png" alt="Surinder Kumar" />
             <h3 class="name">Surinder Kumar</h3>
             <p class="role">CTO</p>
             <p class="feedback">Excellent service, professional and reliable team to work with.</p>
           </div>
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
             <img src="./images/thirdpage/testimonials_2.png" alt="Ishant Maadan" />
             <h3 class="name">Ishant Maadan</h3>
             <p class="role">CTO</p>
             <p class="feedback">Very professional and delivered on time. Recommended!</p>
           </div>
         </div>
-        <!-- Slide 4 (Single Card) -->
+
+        <!-- Slide 4 -->
         <div class="testimonial-slide single">
-          <div class="testimonial-card">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="150">
             <img src="./images/thirdpage/testimonials_2.png" alt="Rahul Dhakar" />
             <h3 class="name">Rahul Dhakar</h3>
             <p class="role">CTO</p>
@@ -137,14 +142,17 @@
           </div>
         </div>
       </div>
+
       <!-- Navigation Buttons -->
-      <button class="testimonial-btn prev">‹</button>
-      <button class="testimonial-btn next">›</button>
+      <button class="testimonial-btn prev" data-aos="fade-right" data-aos-delay="200">‹</button>
+      <button class="testimonial-btn next" data-aos="fade-left" data-aos-delay="200">›</button>
+
       <!-- Dots -->
-      <div class="dots-container"></div>
+      <div class="dots-container" data-aos="fade-up" data-aos-delay="300"></div>
     </div>
   </div>
 </section>
+
 <!-- Contact Us -->
 <section class="contact-section" id="contact">
   <div class="contact-overlay">
@@ -224,5 +232,10 @@
   <script src="./navbar.js"></script>
   <script src="./footer.js"></script>
 <script src="./new_commerce.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
 </body>
 </html>

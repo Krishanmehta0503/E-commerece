@@ -33,42 +33,53 @@ function saveUsers(users) {
 }
 
 app.post("/register", async (req, res) => {
-  const { name, email, password, mobile, gender, dob, fatherName, motherName, address } = req.body;
-  if (!email || !password) return res.status(400).json({ message: "Email and password required" });
-
-  const users = getUsers();
-  if (users.some(u => u.email === email)) {
-    return res.status(400).json({ message: "Email already registered" });
-  }
-
-  const newUser = { name, email, password, mobile, gender, dob, fatherName, motherName, address, createdAt: new Date() };
-  users.push(newUser);
-  saveUsers(users);
-
-  // send confirmation email
-  let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
-
-
   try {
-  await transporter.sendMail({
-    from: `"E-Commerce Site" <${process.env.EMAIL_USER}>`,
-    to: email,
-    subject: "Registration Successful",
-    text: `Hello ${name},\n\nYou have successfully registered on our site.\n\nThank you!`
-  });
-  res.json({ message: "User registered successfully and email sent!" });
-} catch (err) {
-  console.error("Email error:", err);
-  res.status(500).json({ message: "User registered but email failed", error: err.message });
-}
+    const { name, email, password, mobile, gender, dob, fatherName, motherName, address } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password required" });
+    }
 
+    const users = getUsers();
+    if (users.some(u => u.email === email)) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    const newUser = { name, email, password, mobile, gender, dob, fatherName, motherName, address, createdAt: new Date() };
+    users.push(newUser);
+    saveUsers(users);
+
+    // Try sending email
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    try {
+      await transporter.sendMail({
+        from: `"E-Commerce Site" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Registration Successful",
+        text: `Hello ${name}, you have successfully registered.`
+      });
+
+      return res.json({ message: "✅ Registration successful! Email sent." });
+
+    } catch (mailErr) {
+      console.error("Email error:", mailErr.message);
+      // Still succeed, but warn about email
+      return res.json({ message: "✅ Registered successfully, but email could not be sent." });
+    }
+
+  } catch (err) {
+    console.error("Registration route error:", err);
+    return res.status(500).json({ message: "❌ Registration failed due to server error.", error: err.message });
+  }
 });
+
+
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   const users = getUsers();
