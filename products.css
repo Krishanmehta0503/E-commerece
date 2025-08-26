@@ -49,6 +49,18 @@
   background-color: #212529;
   color: #fff;
 }
+.products-section {
+  margin-bottom: 80px; /* creates gap before footer */
+}
+
+.product-card-inner {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.product-card-inner:hover {
+  transform: scale(1.02);
+}
 
 /* ----------------- Responsive Styles ------------------ */
 @media (max-width: 992px) {
@@ -94,13 +106,4 @@
   .card-body p {
     font-size: 0.9rem;
   }
-}
-
-.product-card-inner {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.product-card-inner:hover {
-  transform: scale(1.02);
 }

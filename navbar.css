@@ -25,6 +25,12 @@ ul li a:hover {
   width: 80px;
   margin: 10px 20px;
 }
+.nav-link.active {
+  color: #ffc107 !important;  /* Yellow highlight */
+  font-weight: bold;
+  border-bottom: 2px solid #ffc107;
+}
+
 /* Responsive Navbar */
 @media (max-width: 992px) {
   ul {
@@ -68,3 +74,4 @@ ul li a:hover {
     width: 50px;
   }
 }
+

@@ -1,11 +1,12 @@
 // navbar.js
-document.addEventListener("DOMContentLoaded", function() {
-  fetch("./navbar.html")
-    .then(response => response.text())
+// navbar.js
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("navbar.html") // <-- make sure this file exists in the same folder
+    .then(res => res.text())
     .then(data => {
       document.getElementById("navbar-placeholder").innerHTML = data;
     })
-    .catch(error => console.error("Error loading footer:", error));
+    .catch(err => console.error("Error loading navbar:", err));
 });
 
 // header.js
@@ -43,3 +44,16 @@ function setDynamicNavbar() {
     .map(link => `<li class="nav-item"><a class="nav-link" href="${link.href}">${link.text}</a></li>`)
     .join("");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".nav-link");
+  const currentPage = window.location.pathname.split("/").pop(); 
+
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});

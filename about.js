@@ -1,32 +1,36 @@
-const counters = document.querySelectorAll('.counter');
-  const speed = 100;
+// Counter animation
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".counter");
+  const speed = 200; // lower = faster
 
-  function animateCounter(counter) {
-    const target = +counter.getAttribute('data-target');
-    const suffix = counter.getAttribute('data-suffix') || '';
-    let count = 0;
-    const step = target / speed;
-
-    const update = () => {
-      count += step;
-      if (count < target) {
-        counter.innerText = Math.floor(count);
-        requestAnimationFrame(update);
-      } else {
-        counter.innerText = target.toLocaleString() + suffix;
-      }
-    };
-    update();
-  }
-
-  function checkCounters() {
+  const animateCounters = () => {
     counters.forEach(counter => {
-      const rect = counter.getBoundingClientRect();
-      if (rect.top < window.innerHeight && counter.innerText === '0') {
-        animateCounter(counter);
+      const updateCount = () => {
+        const target = +counter.getAttribute("data-target");
+        const suffix = counter.getAttribute("data-suffix") || "";
+        const count = +counter.innerText.replace(/[^0-9]/g, "");
+        const increment = Math.ceil(target / speed);
+
+        if (count < target) {
+          counter.innerText = count + increment + suffix;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target + suffix;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  // Run animation only when counters come into view
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.disconnect(); // run only once
       }
     });
-  }
+  }, { threshold: 0.5 });
 
-  window.addEventListener('scroll', checkCounters);
-  window.addEventListener('load', checkCounters);
+  counters.forEach(counter => observer.observe(counter));
+});
