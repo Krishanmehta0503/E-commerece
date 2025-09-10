@@ -83,16 +83,21 @@ contactToggle.addEventListener("click", () => {
     contactOptions.style.display === "flex" ? "none" : "flex";
 });
 
-<!-- Chatbot js  -->
+function toggleChat() {
+  const chatbox = document.getElementById("chatbox");
+  chatbox.style.display = chatbox.style.display === "none" ? "flex" : "none";
+}
 
 async function sendMessage() {
   const input = document.getElementById("input");
-  const userMsg = input.value;
+  const userMsg = input.value.trim();
   if (!userMsg) return;
 
-  document.getElementById("messages").innerHTML += `<div><b>You:</b> ${userMsg}</div>`;
+  const messagesDiv = document.getElementById("messages");
+  messagesDiv.innerHTML += `<div><b>You:</b> ${userMsg}</div>`;
   input.value = "";
 
+  // Call your backend API (replace with your deployed Vercel/Render URL)
   const response = await fetch("https://your-app.vercel.app/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -100,5 +105,7 @@ async function sendMessage() {
   });
 
   const data = await response.json();
-  document.getElementById("messages").innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
+  messagesDiv.innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
+
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
