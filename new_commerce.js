@@ -82,3 +82,23 @@ contactToggle.addEventListener("click", () => {
   contactOptions.style.display =
     contactOptions.style.display === "flex" ? "none" : "flex";
 });
+
+<!-- Chatbot js  -->
+
+async function sendMessage() {
+  const input = document.getElementById("input");
+  const userMsg = input.value;
+  if (!userMsg) return;
+
+  document.getElementById("messages").innerHTML += `<div><b>You:</b> ${userMsg}</div>`;
+  input.value = "";
+
+  const response = await fetch("https://your-app.vercel.app/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: userMsg })
+  });
+
+  const data = await response.json();
+  document.getElementById("messages").innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
+}
