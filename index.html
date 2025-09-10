@@ -212,12 +212,15 @@
   </div>
 </div>
 
-<!--Chatbot -->
-        <div id="chatbot">
-  <div id="chatbox">
+<!-- Floating Chatbot -->
+<div id="chatbot">
+  <div id="chat-header" onclick="toggleChat()">💬 Chat with us</div>
+  <div id="chatbox" style="display:none;">
     <div id="messages"></div>
-    <input id="input" placeholder="Ask me anything..." />
-    <button onclick="sendMessage()">Send</button>
+    <div id="input-area">
+      <input id="input" placeholder="Type a message..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
   </div>
 </div>
 <!-- Font Awesome for Icons -->
