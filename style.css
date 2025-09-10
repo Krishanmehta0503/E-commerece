@@ -705,3 +705,31 @@ ul li a:hover {
     font-size: 18px;
   }
 }
+
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+}
+#messages { 
+  max-height: 300px; 
+  overflow-y: auto; 
+  padding: 10px; 
+}
+#input { 
+  width: 70%; 
+  padding: 8px; 
+}
+button { 
+  width: 25%; 
+  padding: 8px; 
+  background: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 6px; 
+}
